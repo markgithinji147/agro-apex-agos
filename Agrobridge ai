@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroBridge AI - Master Prototype</title>
+    <style>
+        :root {
+            --bg-color: #0d0f12;
+            --panel-color: #161b22;
+            --neon-green: #39FF14;
+            --text-main: #ffffff;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--panel-color);
+            border-bottom: 2px solid var(--neon-green);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area h1 {
+            color: var(--neon-green);
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .patent-tag {
+            font-size: 11px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Mode Selector Tab */
+        .platform-modes {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            background: var(--panel-color);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .mode-btn.active {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+            color: var(--neon-green);
+        }
+
+        /* App Dashboard Framework */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background-color: var(--panel-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: var(--neon-green);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Interactive UI Controls */
+        .btn-action {
+            background-color: var(--neon-green);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.02);
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            background: #21262d;
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-top: 8px;
+        }
+
+        /* Live Terminal Output Mock */
+        .terminal-box {
+            background: #000;
+            border: 1px solid var(--border-color);
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 6px;
+            color: #a3ead4;
+            min-height: 100px;
+            white-space: pre-line;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1>AgroBridge AI</h1>
+            <div style="font-size: 12px; color: var(--text-muted)">Omnichannel AgriTech Network</div>
+        </div>
+        <div class="patent-tag">
+            <strong>System Owner / Admin:</strong> Mark Githinji Karegu (Enforced)
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card" style="border-left: 4px solid var(--neon-green);">
+            <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+                <strong>Prototype Controller:</strong> Use the buttons below to switch between the high-fidelity smartphone interface and the offline remote fallback SMS data engine.
+            </p>
+            <div class="platform-modes" style="margin-top: 15px;">
+                <button class="mode-btn active" onclick="switchView('web')">🌐 Smartphone Web App View</button>
+                <button class="mode-btn" onclick="switchView('sms')">💬 Offline Feature Phone (SMS Gateway)</button>
+            </div>
+        </div>
+
+        <div class="grid-layout">
+            <div class="main-controls">
+                
+                <div id="web-panel" class="card">
+                    <h2>Advanced AI Diagnostics & Weather Engine (Web Interface)</h2>
+                    <p style="font-size: 14px; color: var(--text-muted);">System memory active: Google OAuth verified user token running persistently locally.</p>
+                    
+                    <label>Select Local Language / Dialect:</label>
+                    <select id="lang-select" onchange="updateLanguage()">
+                        <option value="en">English</option>
+                        <option value="sw">Swahili</option>
+                        <option value="fr">French</option>
+                    </select>
+
+                    <h3 style="color: var(--neon-green); margin-top: 20px; font-size: 15px;">Visual Crop Health Diagnosis Tracker</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Simulate taking a live field picture or uploading an analysis target image below:</p>
+                    
+                    <select id="crop-issue">
+                        <option value="blight">Tomato - Brown concentric rings on lower leaves</option>
+                        <option value="aphids">Maize - Clustering tiny green insects on stalks</option>
+                        <option value="healthy">Wheat - Vibrant uniform gold coloration</option>
+                    </select>
+
+                    <button class="btn-action" onclick="runWebAI()">Trigger Advanced RAG Research Engine</button>
+                </div>
+
+                <div id="sms-panel" class="card" style="display: none;">
+                    <h2>Simulated Inbound SMS Gateway Parsing Core</h2>
+                    <p style="font-size: 14px; color: var(--text-muted);">Simulates low-bandwidth queries sent from basic feature phones across regional African trading centers.</p>
+                    
+                    <label>Simulate Incoming User Text Payload String:</label>
+                    <textarea id="sms-text" rows="3">Tomato yellow spots in Kiambu</textarea>
+                    
+                    <button class="btn-action" onclick="runSMSAI()">Parse Text Packet & Respond</button>
+                </div>
+
+                <div class="card">
+                    <h2>Central System Response Ledger (Verified RAG Output)</h2>
+                    <div id="terminal-output" class="terminal-box">
+                        System ready. Mark Githinji Karegu verified as Master Admin. Click an operation script module above to initiate data pipelines...
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-ledger">
+                <div class="card">
+                    <h2>Direct Market Ledger Connection</h2>
+                    <p style="font-size: 13px; color: var(--text-muted);">Real-time peer-to-peer tracking parameters matching farmers directly to wholesale procurement buyers.</p>
+                    
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; margin-top: 15px;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-color); color: var(--neon-green);">
+                                <th style="padding-bottom: 8px;">Commodity</th>
+                                <th style="padding-bottom: 8px;">Regional Hub</th>
+                                <th style="padding-bottom: 8px;">Value Index</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #222;">
+                                <td style="padding: 8px 0;">Maize (90KG)</td>
+                                <td>Eldoret Hub</td>
+                                <td style="color: var(--neon-green)">3,200 KES</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #222;">
+                                <td style="padding: 8px 0;">Tomatoes (Box)</td>
+                                <td>Kiambu Hub</td>
+                                <td style="color: var(--neon-green)">4,500 KES</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #222;">
+                                <td style="padding: 8px 0;">Potatoes (Bag)</td>
+                                <td>Molo Hub</td>
+                                <td style="color: var(--neon-green)">2,800 KES</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="border-top: 2px solid var(--neon-green);">
+                    <h2>Security Configuration</h2>
+                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                        <strong>Role-Based Security:</strong> Active.<br>
+                        <strong>Patent Lock Status:</strong> Enforced.<br>
+                        <strong>Global Modifiers:</strong> Locked exclusively to Developer ID: Mark Githinji Karegu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        PROPRIETARY SYSTEM SCHEMATIC &middot; DESIGNED BY MARK GITHINJI KAREGU &middot; © 2026 ALL RIGHTS RESERVED
+    </footer>
+
+    <script>
+        function switchView(mode) {
+            const webPanel = document.getElementById('web-panel');
+            const smsPanel = document.getElementById('sms-panel');
+            const btns = document.querySelectorAll('.mode-btn');
+            
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            if (mode === 'web') {
+                webPanel.style.display = 'block';
+                smsPanel.style.display = 'none';
+                btns[0].classList.add('active');
+            } else {
+                webPanel.style.display = 'none';
+                smsPanel.style.display = 'block';
+                btns[1].classList.add('active');
+            }
+        }
+
+        function runWebAI() {
+            const selection = document.getElementById('crop-issue').value;
+            const lang = document.getElementById('lang-select').value;
+            const terminal = document.getElementById('terminal-output');
+            
+            let output = "";
+            if (lang === 'sw') {
+                if(selection === 'blight') {
+                    output = "[RAG AI UTANGAZAJI]: Utambuzi uliothibitishwa: Baka la Mapema (Early Blight). Mapendekezo: Tumia dawa ya ukungu inayotokana na shaba. Wakati mzuri wa kuvuna kulingana na utabiri wa hewa ya eneo lako: Siku 14 zijazo (Hali kavu).";
+                } else if(selection === 'aphids') {
+                    output = "[RAG AI UTANGAZAJI]: Utambuzi uliothibitishwa: Sifa/Wadudu wa mmea. Mapendekezo: Tumia mafuta ya neem ya kikaboni asubuhi mapema.";
+                } else {
+                    output = "[RAG AI UTANGAZAJI]: Zao lina afya nzuri. Hakuna hatua zinazohitajika sasa.";
+                }
+            } else {
+                if(selection === 'blight') {
+                    output = "[RAG AI ENGINE LOG]: Verified Diagnosis: Early Blight detected via image signature lookup. Resolution: Apply copper-based fungicide. Optimal planting/harvest index matched to local coordinates: Harvest within 14 days due to dry conditions ahead.";
+                } else if(selection === 'aphids') {
+                    output = "[RAG AI ENGINE LOG]: Verified Diagnosis: Aphid Infestation. Resolution: Spray organic neem oil solution during early morning cooling phases.";
+                } else {
+                    output = "[RAG AI ENGINE LOG]: Crop profile verified healthy. Nitrous monitoring metrics standard.";
+                }
+            }
+            terminal.innerText = output;
+        }
+
+        function runSMSAI() {
+            const txt = document.getElementById('sms-text').value.toLowerCase();
+            const terminal = document.getElementById('terminal-output');
+            
+            let output = "AGROBRIDGE SMS GATEWAY RESPONSE:\n";
+            if (txt.includes('tomato') || txt.includes('spots')) {
+                output += "Target: Tomatoes. Issue: Yellow spots (Early Blight). Action: Apply copper fungicide. Kiambu Hub Price: 4,500 KES/Box.";
+            } else if (txt.includes('maize') || txt.includes('corn')) {
+                output += "Target: Maize. Issue: Stalk damage indicator. Action: Check core moisture levels. Eldoret Hub Price: 3,200 KES/Bag.";
+            } else {
+                output += "Query parsed successfully. Relational lookup indicates structural matching found. Farming practices updated according to local weather forecasts.";
+            }
+            terminal.innerText = output;
+        }
+
+        function updateLanguage() {
+            const lang = document.getElementById('lang-select').value;
+            const terminal = document.getElementById('terminal-output');
+            if (lang === 'sw') {
+                terminal.innerText = "Mfumo upo tayari. Mark Githinji Karegu amethibitishwa kama msimamizi mkuu.";
+            } else {
+                terminal.innerText = "System ready. Mark Githinji Karegu verified as Master Admin.";
+            }
+        }
+    </script>
+</body>
+</html>
