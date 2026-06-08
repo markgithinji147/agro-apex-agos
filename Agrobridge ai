@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroApex OS - Advanced Master Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #050805;         /* Extreme Dark Emerald-Black */
@@ -101,58 +102,35 @@
 
         .card h2 {
             color: var(--neon-green);
-            margin-top: 0;
+            margin: 0 0 10px 0;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
             font-size: 18px;
             letter-spacing: 1px;
         }
 
-        /* 3D Kinetic Globe Matrix Visualization Layer */
+        /* 3D Kinetic Globe Layout Configurations */
         .globe-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 0;
-            background: radial-gradient(circle, rgba(17,42,17,0.3) 0%, rgba(5,8,5,0) 70%);
-        }
-
-        .tech-globe {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 2px dashed var(--neon-green);
+            padding: 10px 0;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.1) 0%, rgba(5,8,5,0) 70%);
+            height: 220px;
             position: relative;
-            animation: rotateGlobe 20s linear infinite;
-            box-shadow: 0 0 30px rgba(0, 230, 118, 0.2);
         }
 
-        .tech-globe::before {
-            content: '';
-            position: absolute;
+        #globe-canvas-target {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            border: 1px dotted var(--text-main);
-            transform: rotateX(60deg);
+            cursor: grab;
         }
 
-        .tech-globe::after {
-            content: '🌐';
-            font-size: 80px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.7;
+        #globe-canvas-target:active {
+            cursor: grabbing;
         }
 
-        @keyframes rotateGlobe {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Dual Particle HUD HUD Diagnostics Overlays */
+        /* Dual Particle HUD Diagnostics Overlays */
         .hud-scanner {
             display: flex;
             gap: 15px;
@@ -216,7 +194,9 @@
             padding: 18px;
             border-radius: 6px;
             color: #00FF66;
-            min-height: 120px;
+            min-height: 125px;
+            max-height: 250px;
+            overflow-y: auto;
             white-space: pre-line;
             line-height: 1.6;
         }
@@ -279,220 +259,4 @@
 
     <header>
         <div class="logo-area">
-            <h1>AgroApex OS</h1>
-            <div style="font-size: 12px; color: var(--text-main); letter-spacing: 1px;">Omnichannel AgriTech Engine &bull; MarkApex Technologies</div>
-        </div>
-        <div class="patent-tag">
-            <strong>System Controller Admin ID:</strong> Mark Githinji Karegu (Enforced)
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="card" style="border-left: 4px solid var(--neon-green);">
-            <p style="margin: 0; font-size: 14px; color: var(--text-main);">
-                <strong>Interactive System Framework Controller:</strong> Toggle active operational pipeline views below to test advanced data streams.
-            </p>
-            <div class="platform-modes">
-                <button class="mode-btn active" onclick="switchView('web')">🌐 Smartphone Ag-OS Engine View</button>
-                <button class="mode-btn" onclick="switchView('sms')">💬 Offline SMS Fallback Gateway Node</button>
-            </div>
-        </div>
-
-        <div class="grid-layout">
-            <div class="main-controls">
-                
-                <div id="web-panel" class="card">
-                    <h2>Advanced AI Diagnostics & Predictive Research Lab</h2>
-                    <p style="font-size: 13px; color: var(--text-main); margin-bottom: 20px;">Persistent local session authenticated via cryptographic handshake validation.</p>
-                    
-                    <div class="avatar-container">
-                        <div class="avatar-graphics">🤖</div>
-                        <div>
-                            <div style="color: var(--neon-green); font-weight: bold; font-size: 14px;">APEX AI SYNCHRONIZER</div>
-                            <div style="font-size: 11px; color: var(--text-main);">Multimodal Bilingual Agent (Listening State Active)</div>
-                        </div>
-                    </div>
-
-                    <label>Select System Language Environment / Chagua Lugha ya Mfumo:</label>
-                    <select id="lang-select" onchange="updateLanguage()">
-                        <option value="en">English (US/UK Core UI)</option>
-                        <option value="sw">Swahili (Sanifu Native Dictionary)</option>
-                    </select>
-
-                    <h3 style="color: var(--neon-green); margin-top: 25px; font-size: 15px; letter-spacing: 0.5px;">Predator HUD Vision Simulator (Dual Camera Overlays)</h3>
-                    <p style="font-size: 13px; color: var(--text-main);">Select a target image payload configuration profile below:</p>
-                    
-                    <select id="crop-issue">
-                        <option value="blight">Target Frame 1: Tomato Layer - Brown concentric rings on lower leaves</option>
-                        <option value="plastic">Target Frame 2: Macro Soil Analysis Layer - Synthetic microplastic matrix fibers discovered</option>
-                        <option value="healthy">Target Frame 3: Wheat Canopy Layer - Uniform golden reflection index</option>
-                    </select>
-
-                    <div class="hud-scanner">
-                        <div class="hud-box">
-                            <span style="color: var(--neon-green)">[LENS MODE: 10X OPTICAL ZOOM]</span><br>
-                            Spectral Field Array Matrix: ACTIVE<br>
-                            Focus Lock: STABLE
-                        </div>
-                        <div class="hud-box alert">
-                            <span style="color: var(--predator-red)">[DIAGNOSTIC SYSTEM SENSORS]</span><br>
-                            Particle Scan Profile: RUNNING<br>
-                            Anomaly Identifier Vector: SET
-                        </div>
-                    </div>
-
-                    <button class="btn-action" onclick="runWebAI()">Trigger Predictive Research Engine</button>
-                </div>
-
-                <div id="sms-panel" class="card" style="display: none;">
-                    <h2>Inbound Low-Bandwidth Gateway Controller</h2>
-                    <p style="font-size: 13px; color: var(--text-main); margin-bottom: 20px;">Parses offline text packets into structured relational arrays without data requirements.</p>
-                    
-                    <label>Simulate Incoming User Raw Text String Payload:</label>
-                    <textarea id="sms-text" rows="3">Tomato yellow spots in Kiambu</textarea>
-                    
-                    <button class="btn-action" onclick="runSMSAI()">Parse Text Packet & Dispatch Gateway Response</button>
-                </div>
-
-                <div class="card">
-                    <h2>Central System Response Ledger (Verified Output Array)</h2>
-                    <div id="terminal-output" class="terminal-box">
-                        System pipeline initialized. Master Admin validation verified: Mark Githinji Karegu. Launch an operation module to populate arrays...
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="sidebar-ledger">
-                <div class="card">
-                    <h2>Conservation Token Vault</h2>
-                    <p style="font-size: 12px; color: var(--text-main); margin-bottom: 12px;">Financial ledger balance derived from verified plastic removal metrics.</p>
-                    <div class="token-counter">
-                        <span style="font-size: 13px; font-weight: bold; letter-spacing: 0.5px;">$MAZ TOKEN BALANCE</span>
-                        <span class="token-val" id="token-display">1250 MAZ</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Global Nexus Mapping</h2>
-                    <p style="font-size: 12px; color: var(--text-main); margin-bottom: 15px;">Real-time asset tracking nodes locating production clusters instantly.</p>
-                    <div class="globe-wrapper">
-                        <div class="tech-globe"></div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Direct Market Ledger Connection</h2>
-                    <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; margin-top: 5px;">
-                        <thead>
-                            <tr style="border-bottom: 1px solid var(--border-color); color: var(--neon-green);">
-                                <th style="padding-bottom: 8px;">Commodity</th>
-                                <th style="padding-bottom: 8px;">Regional Hub</th>
-                                <th style="padding-bottom: 8px;">Value Index</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #142214;">
-                                <td style="padding: 10px 0; color: white;">Maize (90KG)</td>
-                                <td>Eldoret Hub</td>
-                                <td style="color: var(--neon-green)">3,200 KES</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #142214;">
-                                <td style="padding: 10px 0; color: white;">Tomatoes (Box)</td>
-                                <td>Kiambu Hub</td>
-                                <td style="color: var(--neon-green)">4,500 KES</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #142214;">
-                                <td style="padding: 10px 0; color: white;">Potatoes (Bag)</td>
-                                <td>Molo Hub</td>
-                                <td style="color: var(--neon-green)">2,800 KES</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        PROPRIETARY CORE SCHEMATIC ARCHITECTURE &bull; DESIGNED BY MARK GITHINJI KAREGU &bull; &copy; 2026 MARKAPEX TECHNOLOGIES
-    </footer>
-
-    <script>
-        let currentTokens = 1250;
-
-        function switchView(mode) {
-            const webPanel = document.getElementById('web-panel');
-            const smsPanel = document.getElementById('sms-panel');
-            const btns = document.querySelectorAll('.mode-btn');
-            
-            btns.forEach(btn => btn.classList.remove('active'));
-            
-            if (mode === 'web') {
-                webPanel.style.display = 'block';
-                smsPanel.style.display = 'none';
-                btns[0].classList.add('active');
-            } else {
-                webPanel.style.display = 'none';
-                smsPanel.style.display = 'block';
-                btns[1].classList.add('active');
-            }
-        }
-
-        function runWebAI() {
-            const selection = document.getElementById('crop-issue').value;
-            const lang = document.getElementById('lang-select').value;
-            const terminal = document.getElementById('terminal-output');
-            const tokenBox = document.getElementById('token-display');
-            
-            let output = "";
-            if (lang === 'sw') {
-                if(selection === 'blight') {
-                    output = "[LOGU YA APEX AI BRAIN]: Utambuzi: Baka la Mapema (Early Blight). Suluhisho: Tumia dawa ya ukungu ya shaba kuzuia uharibifu wa majani. Wavuni zao katika siku 14 zijazo kwa sababu ya ukavu unaokuja.";
-                } else if(selection === 'plastic') {
-                    output = "[ALAMU YA APEX HUD]: MFUMO UMEGUNDUA MICRO-PLASTIC KATIKA UCHANGANUZI WA UCHAFUZI! \n\nHatua: Safisha eneo lililoathiriwa. Zawadi ya Mazingira imetolewa: +150 $MAZ tokens zimeongezwa kwenye mkoba wako kwa hatua hii ya uhifadhi.";
-                    currentTokens += 150;
-                } else {
-                    output = "[LOGU YA APEX AI BRAIN]: Shamba lina afya nzuri kabisa. Viwango vya nitrojeni na unyevu vipo salama.";
-                }
-            } else {
-                if(selection === 'blight') {
-                    output = "[APEX AI BRAIN LOG]: Diagnosis Verified: Early Blight detected via image signature indexing. Resolution: Apply copper-based formulation to leaf system immediately. Adaptive weather metrics update: Harvest inside 14 dry-window tracking days.";
-                } else if(selection === 'plastic') {
-                    output = "[CRITICAL DETECTOR ALERT]: SYNTHETIC MICRO-PLASTIC PARTICLES IDENTIFIED VIA HUD SCANNER CONTROLS! \n\nRemediation Protocol: Execute removal procedures immediately. Ecological bonus issued: +150 $MAZ credits deposited to vault for automated conservation contribution tracking.";
-                    currentTokens += 150;
-                } else {
-                    output = "[APEX AI BRAIN LOG]: Matrix scan verified healthy crop profile canopy. Core structural metrics processing optimal.";
-                }
-            }
-            terminal.innerText = output;
-            tokenBox.innerText = currentTokens + " MAZ";
-        }
-
-        function runSMSAI() {
-            const txt = document.getElementById('sms-text').value.toLowerCase();
-            const terminal = document.getElementById('terminal-output');
-            
-            let output = "APEX SMS GATEWAY DATA DESERIALIZER OUTPUT:\n----------------------------------------\n";
-            if (txt.includes('tomato') || txt.includes('spots')) {
-                output += "Target Target: Tomatoes\nDiagnostic Parse: Early Blight Detected\nAction Logic: Spray Copper Fungicide\nKiambu Hub Integrated Market Index: 4,500 KES/Box\nStatus: Message payload compressed and optimized for feature network delivery.";
-            } else if (txt.includes('maize') || txt.includes('corn')) {
-                output += "Target Target: Maize Crop Profile\nDiagnostic Parse: Insect structural activity indicator logged\nAction Logic: Balance soil moisture content arrays\nEldoret Hub Integrated Market Index: 3,200 KES/Bag";
-            } else {
-                output += "System payload evaluated. Structural relational tracking match found. Target parameters forwarded to nearest processing database successfully.";
-            }
-            terminal.innerText = output;
-        }
-
-        function updateLanguage() {
-            const lang = document.getElementById('lang-select').value;
-            const terminal = document.getElementById('terminal-output');
-            if (lang === 'sw') {
-                terminal.innerText = "Mfumo upo tayari kufanya kazi. Msimamizi Mkuu amethibitishwa: Mark Githinji Karegu. Chagua operesheni hapo juu ili kuanzisha mtiririko wa data...";
-            } else {
-                terminal.innerText = "System pipeline initialized. Master Admin validation verified: Mark Githinji Karegu. Launch an operation module to populate arrays...";
-            }
-        }
-    </script>
-</body>
-</html>
+            <h1>AgroApex
